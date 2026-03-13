@@ -1,0 +1,182 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kaiden</title>
+
+<style>
+
+html, body{
+margin:0;
+padding:0;
+height:100%;
+overflow:hidden;
+background:black;
+font-family:Arial, Helvetica, sans-serif;
+color:white;
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+text-align:center;
+padding:40px 60px;
+border-radius:16px;
+background:rgba(0,0,0,0.45);
+backdrop-filter:blur(8px);
+box-shadow:0 0 40px rgba(120,120,255,0.3);
+}
+
+h1{
+margin:0;
+font-size:48px;
+letter-spacing:3px;
+}
+
+.role{
+margin-top:8px;
+font-size:20px;
+opacity:0.8;
+}
+
+.age{
+margin-top:16px;
+font-size:18px;
+color:#9fc7ff;
+font-family:monospace;
+}
+
+.footer{
+margin-top:20px;
+font-size:14px;
+opacity:0.6;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="galaxy"></canvas>
+
+<div class="center">
+
+<h1>Kaiden</h1>
+
+<div class="role">
+Developer
+</div>
+
+<div class="age" id="age">
+loading age...
+</div>
+
+<div class="footer">
+Discord profile page
+</div>
+
+</div>
+
+<script>
+
+const canvas = document.getElementById("galaxy");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for(let i = 0; i < 1200; i++){
+
+stars.push({
+x:(Math.random()-0.5)*canvas.width,
+y:(Math.random()-0.5)*canvas.height,
+z:Math.random()*canvas.width
+});
+
+}
+
+function animate(){
+
+ctx.fillStyle="black";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+for(let i=0;i<stars.length;i++){
+
+let star=stars[i];
+
+star.z -= 2;
+
+if(star.z <= 0){
+star.z = canvas.width;
+}
+
+let k = 128.0 / star.z;
+
+let px = star.x * k + canvas.width/2;
+let py = star.y * k + canvas.height/2;
+
+if(px>=0 && px<=canvas.width && py>=0 && py<=canvas.height){
+
+let size = (1 - star.z/canvas.width) * 3;
+
+ctx.fillStyle="white";
+ctx.fillRect(px,py,size,size);
+
+}
+
+}
+
+requestAnimationFrame(animate);
+
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+});
+
+</script>
+
+<script>
+
+const birthDate = new Date("2008-01-21T03:33:44");
+
+function updateAge(){
+
+const now = new Date();
+
+const diff = now - birthDate;
+
+const years = diff / (1000 * 60 * 60 * 24 * 365.2425);
+
+document.getElementById("age").textContent =
+"Age: " + years.toFixed(10) + " years";
+
+}
+
+setInterval(updateAge,1000);
+
+updateAge();
+
+</script>
+
+</body>
+</html>
+```
