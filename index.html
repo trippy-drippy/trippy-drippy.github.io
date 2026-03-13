@@ -10,7 +10,7 @@
 
 <style>
 
-html, body{
+html,body{
 margin:0;
 padding:0;
 height:100%;
@@ -37,7 +37,7 @@ display:flex;
 justify-content:center;
 gap:40px;
 padding:20px;
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.45);
 backdrop-filter:blur(8px);
 z-index:2;
 }
@@ -48,7 +48,7 @@ border:none;
 color:white;
 font-size:16px;
 cursor:pointer;
-opacity:0.7;
+opacity:0.75;
 transition:0.3s;
 }
 
@@ -61,14 +61,17 @@ display:none;
 position:absolute;
 top:50%;
 left:50%;
-transform:translate(-50%, -50%);
+transform:translate(-50%,-50%);
 text-align:center;
-max-width:700px;
+max-width:900px;
+width:80%;
 padding:40px;
-background:rgba(0,0,0,0.45);
-border-radius:16px;
+background:rgba(0,0,0,0.5);
+border-radius:18px;
 backdrop-filter:blur(10px);
 z-index:1;
+max-height:75vh;
+overflow:auto;
 }
 
 .page.active{
@@ -87,6 +90,19 @@ margin-top:12px;
 line-height:1.6;
 }
 
+.media{
+margin-top:25px;
+display:flex;
+flex-direction:column;
+gap:25px;
+align-items:center;
+}
+
+iframe{
+border-radius:12px;
+max-width:100%;
+}
+
 </style>
 
 </head>
@@ -100,7 +116,7 @@ line-height:1.6;
 <button onclick="showPage('about')">About</button>
 <button onclick="showPage('life')">Life</button>
 <button onclick="showPage('music')">Music</button>
-<button onclick="showPage('movies')">Movies / TV</button>
+<button onclick="showPage('shows')">Shows / Movies</button>
 
 </div>
 
@@ -112,7 +128,7 @@ line-height:1.6;
 
 <div class="age" id="age"></div>
 
-<p>Personal developer profile</p>
+<p>This is my personal profile page.</p>
 
 </div>
 
@@ -122,27 +138,77 @@ line-height:1.6;
 
 <p>Born January 21 2008.</p>
 
-<p>I spend a lot of time building software, learning new technology, and experimenting with development ideas.</p>
+<p>I spend a lot of time building software, experimenting with development ideas, and learning new technology.</p>
 
-<p>This section can hold your story, goals, and personal interests.</p>
+<p>This page exists mostly as a small personal hub.</p>
 
 </div>
 
 <div class="page" id="music">
 
-<h1>Music</h1>
+<h1>Favorite Music</h1>
 
-<p>List favorite artists, genres, albums, or playlists here.</p>
+<div class="media">
 
-<p>You could later embed players or show what you listen to most.</p>
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/4cOdK2wGLETKBW3PvgPWqT"
+width="100%"
+height="80"
+frameBorder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/3AJwUDP919kvQ9QcozQPxg"
+width="100%"
+height="80"
+frameBorder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
+
+<iframe style="border-radius:12px"
+src="https://open.spotify.com/embed/track/2takcwOaAZWiXQijPHIx7B"
+width="100%"
+height="80"
+frameBorder="0"
+allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+</iframe>
 
 </div>
 
-<div class="page" id="movies">
+</div>
 
-<h1>Movies & TV</h1>
+<div class="page" id="shows">
 
-<p>This tab can contain your favorite films, TV series, or franchises.</p>
+<h1>Favorite Shows & Movie</h1>
+
+<div class="media">
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+title="TV Show Clip"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/aqz-KE-bpKQ"
+title="TV Show Clip"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/EXeTwQWrcwY"
+title="Movie Clip"
+frameborder="0"
+allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+allowfullscreen>
+</iframe>
+
+</div>
 
 </div>
 
@@ -150,7 +216,7 @@ line-height:1.6;
 
 function showPage(id){
 
-let pages = document.querySelectorAll(".page");
+let pages=document.querySelectorAll(".page");
 
 pages.forEach(p=>{
 p.classList.remove("active");
@@ -164,60 +230,60 @@ document.getElementById(id).classList.add("active");
 
 <script>
 
-const birthDate = new Date("2008-01-21T03:33:44");
+const birthDate=new Date("2008-01-21T03:33:44");
 
 function updateAge(){
 
-const now = new Date();
+const now=new Date();
 
-let years = now.getFullYear() - birthDate.getFullYear();
-let months = now.getMonth() - birthDate.getMonth();
-let days = now.getDate() - birthDate.getDate();
-let hours = now.getHours() - birthDate.getHours();
-let minutes = now.getMinutes() - birthDate.getMinutes();
-let seconds = now.getSeconds() - birthDate.getSeconds();
+let years=now.getFullYear()-birthDate.getFullYear();
+let months=now.getMonth()-birthDate.getMonth();
+let days=now.getDate()-birthDate.getDate();
+let hours=now.getHours()-birthDate.getHours();
+let minutes=now.getMinutes()-birthDate.getMinutes();
+let seconds=now.getSeconds()-birthDate.getSeconds();
 
-if(seconds < 0){
-seconds += 60;
+if(seconds<0){
+seconds+=60;
 minutes--;
 }
 
-if(minutes < 0){
-minutes += 60;
+if(minutes<0){
+minutes+=60;
 hours--;
 }
 
-if(hours < 0){
-hours += 24;
+if(hours<0){
+hours+=24;
 days--;
 }
 
-if(days < 0){
+if(days<0){
 
-let previousMonth = new Date(
+let previousMonth=new Date(
 now.getFullYear(),
 now.getMonth(),
 0
 ).getDate();
 
-days += previousMonth;
+days+=previousMonth;
 months--;
 
 }
 
-if(months < 0){
-months += 12;
+if(months<0){
+months+=12;
 years--;
 }
 
-document.getElementById("age").textContent =
-"Age: "
-+ years + " years, "
-+ months + " months, "
-+ days + " days, "
-+ hours + " hours, "
-+ minutes + " minutes, "
-+ seconds + " seconds";
+document.getElementById("age").textContent=
+"Age: "+
+years+" years, "+
+months+" months, "+
+days+" days, "+
+hours+" hours, "+
+minutes+" minutes, "+
+seconds+" seconds";
 
 }
 
@@ -229,15 +295,15 @@ updateAge();
 
 <script>
 
-const canvas = document.getElementById("galaxy");
-const ctx = canvas.getContext("2d");
+const canvas=document.getElementById("galaxy");
+const ctx=canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-let stars = [];
+let stars=[];
 
-for(let i = 0; i < 1200; i++){
+for(let i=0;i<1200;i++){
 
 stars.push({
 x:(Math.random()-0.5)*canvas.width,
@@ -249,30 +315,29 @@ z:Math.random()*canvas.width
 
 function animate(){
 
-ctx.fillStyle = "black";
+ctx.fillStyle="black";
 ctx.fillRect(0,0,canvas.width,canvas.height);
 
-for(let i = 0; i < stars.length; i++){
+for(let i=0;i<stars.length;i++){
 
-let star = stars[i];
+let star=stars[i];
 
-star.z -= 2;
+star.z-=2;
 
-if(star.z <= 0){
-star.z = canvas.width;
+if(star.z<=0){
+star.z=canvas.width;
 }
 
-let k = 128.0 / star.z;
+let k=128/star.z;
 
-let px = star.x * k + canvas.width / 2;
-let py = star.y * k + canvas.height / 2;
+let px=star.x*k+canvas.width/2;
+let py=star.y*k+canvas.height/2;
 
-if(px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height){
+if(px>=0 && px<=canvas.width && py>=0 && py<=canvas.height){
 
-let size = (1 - star.z / canvas.width) * 3;
+let size=(1-star.z/canvas.width)*3;
 
-ctx.fillStyle = "white";
-
+ctx.fillStyle="white";
 ctx.fillRect(px,py,size,size);
 
 }
@@ -287,8 +352,8 @@ animate();
 
 window.addEventListener("resize",()=>{
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
 });
 
